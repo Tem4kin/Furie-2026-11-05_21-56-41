@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 79492e838d9ccc94084a85136da08cef
+guid: ef7a4b7f45fbf65428f5d6d86b298aa2
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
@@ -36,11 +36,11 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    preBakeConvexCollisionMesh: 0
-    preBakeTriangleCollisionMesh: 0
+    preBakeConvexCollisionMesh: 1
+    preBakeTriangleCollisionMesh: 1
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1

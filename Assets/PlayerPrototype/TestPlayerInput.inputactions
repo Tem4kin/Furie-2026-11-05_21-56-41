@@ -1,0 +1,63 @@
+{
+    "version": 1,
+    "name": "TestPlayerInput",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "1e3719cb-099b-421a-bde0-639fff63d826",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "52066621-9c9c-462b-928a-81100a724c38",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "688ae99c-e287-4470-ac2f-c7d45c0be92c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "69848479-efcf-47bf-9c79-3faabe144ca2",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";UIControls",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c56c5fd-e16a-46ae-a6c5-4a3faee5d166",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";UIControls",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "UIControls",
+            "bindingGroup": "UIControls",
+            "devices": []
+        }
+    ]
+}
