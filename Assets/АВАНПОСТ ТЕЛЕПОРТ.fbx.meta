@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/АВАНПОСТ ТЕЛЕПОРТ.fbx.meta
 guid: ef7a4b7f45fbf65428f5d6d86b298aa2
+========
+guid: 7ad3dc1a081c9d64287044f8956c6ddd
+>>>>>>>> ef231f1eae8769abaa2514d3d0e2d6800e37662d:Assets/карта макет, чб с проемами дверными.fbx.meta
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable: []
