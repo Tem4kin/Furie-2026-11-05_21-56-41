@@ -1,5 +1,6 @@
 using Unity.AppUI.UI;
 using Unity.XR.OpenVR;
+using UnityEditor.Rendering;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,12 +11,14 @@ public class SphereBehavior : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector2 speed;
+    private int health = 100;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.maxAngularVelocity = 0.025f;
     }
 
     // Update is called once per frame
@@ -30,7 +33,9 @@ public class SphereBehavior : MonoBehaviour
         //transform.Translate(speed.x * 0.1f, 0 , speed.y * 0.1f);
         //rb.MovePosition(new Vector3(speed.x * 0.2f + rb.position.x, 1.1f, speed.y * 0.2f + rb.position.z));
         rb.linearVelocity = new Vector3(speed.x*6, 0, speed.y*6);
-        rb.angularVelocity = new Vector3(0, 0, 0);
+        //rb.angularVelocity = new Vector3(0, 0, 0);
+        //rb.MoveRotation(new Quaternion(0,0,0,0));
+        //transform.LookAt(transform.position + rb.linearVelocity);
     }
 
     public void OnJump(InputValue iv)
@@ -47,5 +52,7 @@ public class SphereBehavior : MonoBehaviour
     {
         Debug.Log("MOVE?");
         speed = iv.Get<Vector2>();
+        Quaternion rotation = Quaternion.LookRotation(rb.linearVelocity);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.025f);
     }
 }
