@@ -1,10 +1,12 @@
 using System.Drawing;
+using Unity.AppUI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Rigidbody body;
+    //public Rigidbody body;
     public Transform Player;
 
     public Transform Home;
@@ -14,9 +16,13 @@ public class Unit : MonoBehaviour
     public float speed;
 
     public float area;
+    
+    private NavMeshAgent agent;
     void Start()
     {
-        body = GetComponent<Rigidbody>();
+       // body = GetComponent<Rigidbody>();
+        agent=GetComponent<NavMeshAgent>();
+        
     }
 
     // Update is called once per frame
@@ -40,43 +46,20 @@ public class Unit : MonoBehaviour
 
     void Arg()
     {
-        if (transform.position != Player.position)
+        float dist = Vector3.Distance(transform.position, Player.position);
+        if (dist > 2f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
-            Vector3 derection =transform.position - Player.position;
-
-            Quaternion rotation =Quaternion.LookRotation(derection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5f * Time.deltaTime);
+            agent.SetDestination(Player.position);
         }
-        //if (Player.position.x < transform.position.x && Player.position.z < transform.position.z)
-        //{
-        //    body.linearVelocity = new Vector3(-speed, 0, -speed);
-        //    Quaternion rotation = Quaternion.LookRotation(body.linearVelocity);
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.025f);
-        //}
-        //else if (Player.position.x > transform.position.x && Player.position.z < transform.position.z)
-        //{
-        //    body.linearVelocity = new Vector3(speed, 0, -speed);
-        //    Quaternion rotation = Quaternion.LookRotation(body.linearVelocity);
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.025f);
-        //}
-        //else if (Player.position.x > transform.position.x && Player.position.z > transform.position.z)
-        //{
-        //    body.linearVelocity = new Vector3(speed, 0, speed);
-        //    Quaternion rotation = Quaternion.LookRotation(body.linearVelocity);
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.025f);
-        //}
-        //else { body.linearVelocity = new Vector3(-speed, 0, speed); Quaternion rotation = Quaternion.LookRotation(body.linearVelocity); transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.025f); }
+        else agent.SetDestination(transform.position);
+        
     }
 
     void GoHome()
     {
         if (transform.position != Home.position)
         {
-            transform.position =Vector3.MoveTowards(transform.position,Home.position,speed* Time.deltaTime);
-            Vector3 derection = transform.position - Home.position;
-            Quaternion rotation = Quaternion.LookRotation(derection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5f * Time.deltaTime);
+            agent.SetDestination(Home.position);
         }
         
     }
