@@ -18,11 +18,13 @@ public class Unit : MonoBehaviour
     public float area;
     
     private NavMeshAgent agent;
+
+    private Animator anim;
     void Start()
     {
        // body = GetComponent<Rigidbody>();
         agent=GetComponent<NavMeshAgent>();
-        
+        anim=GetComponent<Animator>();   
     }
 
     // Update is called once per frame
@@ -37,15 +39,20 @@ public class Unit : MonoBehaviour
         if (dist < area)
         {
             Arg();
+            
         }
         else
         {
             GoHome();
-        }    
+            
+        }
+        
     }
 
     void Arg()
     {
+        anim.SetBool("IsSleeping", false);
+        anim.SetBool("IsFight", true);
         float dist = Vector3.Distance(transform.position, Player.position);
         if (dist > 2f)
         {
@@ -57,10 +64,17 @@ public class Unit : MonoBehaviour
 
     void GoHome()
     {
-        if (transform.position != Home.position)
+        anim.SetBool("IsFight", false);
+        if (transform.position.x != Home.position.x && transform.position.z != Home.position.z)
         {
+            anim.SetBool("IsSleeping", false);
+            anim.SetBool("IsWalking", true);
             agent.SetDestination(Home.position);
         }
-        
+        else
+        {
+            anim.SetBool("IsSleeping", true);
+            anim.SetBool("IsWalking", false);
+        }
     }
 }
